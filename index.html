@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juice Shop Login</title>
+</head>
+<body>
+    <main>
+        <h1>Juice Shop Login</h1>
+
+        <!-- The server must also validate these fields. -->
+        <form action="/login" method="post" onsubmit="return validateForm()" novalidate>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="username" required>
+            <br><br>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" minlength="8" required>
+            <br>
+
+            <p id="message" role="alert"></p>
+            <button type="submit">Log in</button>
+        </form>
+    </main>
+
+     <script>
+        function validateForm() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+
+            message.textContent = "";
+
+            if (email === "" || password.trim() === "") {
+                message.textContent = "Please enter your email and password.";
+                return false;
+            }
+
+            if (!email.includes("@")) {
+                message.textContent = "Your email must contain @.";
+                return false;
+            }
+
+            if (password.length < 8) {
+                message.textContent = "Your password must be at least 8 characters.";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
